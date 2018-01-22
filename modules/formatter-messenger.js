@@ -14,40 +14,10 @@ let formatBlocks = blocks => {
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + block.getId(),
-                "title": "View_Speakers"
+                "title": "View Speakers"
             },
-            ]
-        });
-    );
-    return {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": elements
-            }
-        }
-    };
-};
-
-let formatSubBlocks = Subblocks => {
-    let elements = [];
-    Subblocks.forEach(Subblock =>
-        elements.push({
-            title: Subblock.get("Name"),
-            subtitle: "Would you like to view this",
-            "image_url": "",
-            "buttons": [{
-                "type":"postback",
-                "title":"Block 1",
-                "payload": "view_contacts," + Subblock.getId() + "," + Subblock.get("Name")
-            },{
-                "type": "web_url",
-                "url": "https://login.salesforce.com/" + Subblock.getId(),
-                "title": "Block 2"
-            },
-            ]
-        });
+]
+        })
     );
     return {
         "attachment": {
@@ -158,7 +128,6 @@ let formatOpportunities = opportunities => {
 };
 
 exports.formatBlocks = formatBlocks;
-exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;

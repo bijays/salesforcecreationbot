@@ -28,7 +28,6 @@ let processText = (text, sender)  => {
     if (match) {
         sendMessage({text:
             `Welcome to Creation Technology`}, sender);
-        
         salesforce.findBlock(match[1]).then(blocks => {
             sendMessage({text: `Here are the services available`}, sender);
             sendMessage(formatter.formatBlocks(blocks), sender)
@@ -98,11 +97,7 @@ let handlePost = (req, res) => {
                 sendMessage({text: `OK, I closed the opportunity "${payload[2]}" as "Close Won". Way to go Christophe!`}, sender);
             } else if (payload[0] === "close_lost") {
                 sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
-            } 
-            /*else if (payload[0] === "view_exhibitors") {
-                sendMessage({text: "OK, looking for your exhibitors at " + payload[2] + "..."}, sender);
-                salesforce.findSubBlock(payload[1]).then(Subblocks => sendMessage(formatter.formatSubBlocks(Subblocks), sender));
-            }*/
+            }
         }
     }
     res.sendStatus(200);
