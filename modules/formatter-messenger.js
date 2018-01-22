@@ -10,11 +10,11 @@ let formatBlocks = blocks => {
             "buttons": [{
                 "type":"postback",
                 "title":"View Exhibitors",
-                "payload": "view_exhibitors"
+                "payload": "view_contacts," + block.getId() + "," + block.get("Name")
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + block.getId(),
-                "title": "view_speakers"
+                "title": "View_Speakers"
             },
             ]
         });
@@ -40,10 +40,10 @@ let formatSubBlocks = Subblocks => {
             "buttons": [{
                 "type":"postback",
                 "title":"Block 1",
-                "payload": "view_exhibitors,"
+                "payload": "view_contacts," + Subblock.getId() + "," + Subblock.get("Name")
             },{
                 "type": "web_url",
-                "url": "https://login.salesforce.com/" + block.getId(),
+                "url": "https://login.salesforce.com/" + Subblock.getId(),
                 "title": "Block 2"
             },
             ]
