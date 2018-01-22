@@ -10,7 +10,7 @@ let formatBlocks = blocks => {
             "buttons": [{
                 "type":"postback",
                 "title":"View Exhibitors",
-                "payload": "view_exhibitors,"
+                "payload": "view_exhibitors"
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + block.getId(),
