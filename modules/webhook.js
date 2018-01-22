@@ -28,10 +28,12 @@ let processText = (text, sender)  => {
     if (match) {
         sendMessage({text:
             `Welcome to Creation Technology`}, sender);
+        sendMessage(formatter.formatBlocks(""), sender);
+        /*
         salesforce.findBlock(match[1]).then(blocks => {
             sendMessage({text: `Here are the services available`}, sender);
             sendMessage(formatter.formatBlocks(blocks), sender)
-        });
+        });*/
         return;
     }
 

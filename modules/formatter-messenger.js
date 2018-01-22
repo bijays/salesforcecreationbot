@@ -2,7 +2,7 @@
 
 let formatBlocks = blocks => {
     let elements = [];
-    blocks.forEach(block =>
+    //blocks.forEach(block =>
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
@@ -10,15 +10,15 @@ let formatBlocks = blocks => {
             "buttons": [{
                 "type":"postback",
                 "title":"View Exhibitors",
-                "payload": "view_contacts," + block.getId() + "," + block.get("Name")
+                "payload": "view_contacts,"
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + block.getId(),
                 "title": "View Speakers"
             },
-]
-        })
-    );
+            ]
+        });
+    //);
     return {
         "attachment": {
             "type": "template",
