@@ -24,15 +24,11 @@ let sendMessage = (message, recipient) => {
 
 let processText = (text, sender)  => {
     let match;
-    match = text.match(/help/i);
+    match = text.match(/Hi/i);
     if (match) {
         sendMessage({text:
-            `You can ask me things like:
-    Search account Acme
-    Search Acme in accounts
-    Search contact Smith
-    What are my top 3 opportunities?
-        `}, sender);
+            `Welcome to Creation Technology`}, sender);
+            sendMessage(formatter.formatAccounts(accounts), sender);
         return;
     }
 
