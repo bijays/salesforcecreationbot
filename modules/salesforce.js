@@ -41,6 +41,21 @@ let findBlock = name => {
 
 };
 
+let findSubBlock = name => {
+    return new Promise((resolve, reject) => {
+        let q = "SELECT Id, Name,Block__c,Button_Action__c, Image__c,Title__c, Type__c FROM Sub_Block__c";
+        org.query({query: q}, (err, resp) => {
+            if (err) {
+                reject("An error as occurred");
+            } else if (resp.records && resp.records.length>0) {
+                let Subblocks = resp.records;
+                resolve(Subblocks);
+            }
+        });
+    });
+
+};
+
 let findAccount = name => {
     return new Promise((resolve, reject) => {
         let q = "SELECT Id, Name, BillingStreet, BillingCity, BillingState, Picture_URL__c, Phone FROM Account WHERE Name LIKE '%" + name + "%' LIMIT 5";
@@ -110,6 +125,7 @@ login();
 
 exports.org = org;
 exports.findBlock = findBlock;
+exports.findSubBlock = findSubBlock;
 exports.findAccount = findAccount;
 exports.findContact = findContact;
 exports.findContactsByAccount = findContactsByAccount;

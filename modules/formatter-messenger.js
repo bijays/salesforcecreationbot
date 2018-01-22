@@ -10,11 +10,41 @@ let formatBlocks = blocks => {
             "buttons": [{
                 "type":"postback",
                 "title":"View Exhibitors",
-                "payload": "view_contacts,"
+                "payload": "view_exhibitors,"
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + block.getId(),
-                "title": "View Speakers"
+                "title": "view_speakers"
+            },
+            ]
+        });
+    );
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    };
+};
+
+let formatSubBlocks = Subblocks => {
+    let elements = [];
+    Subblocks.forEach(Subblock =>
+        elements.push({
+            title: Subblock.get("Name"),
+            subtitle: "Would you like to view this",
+            "image_url": "",
+            "buttons": [{
+                "type":"postback",
+                "title":"Block 1",
+                "payload": "view_exhibitors,"
+            },{
+                "type": "web_url",
+                "url": "https://login.salesforce.com/" + block.getId(),
+                "title": "Block 2"
             },
             ]
         });
@@ -128,6 +158,7 @@ let formatOpportunities = opportunities => {
 };
 
 exports.formatBlocks = formatBlocks;
+exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;
