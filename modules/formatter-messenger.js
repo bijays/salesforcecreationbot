@@ -2,7 +2,7 @@
 
 let formatBlocks = blocks => {
     let elements = [];
-    //blocks.forEach(block =>
+    blocks.forEach(block =>
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
@@ -18,7 +18,7 @@ let formatBlocks = blocks => {
             },
             ]
         });
-    //);
+    );
     return {
         "attachment": {
             "type": "template",
