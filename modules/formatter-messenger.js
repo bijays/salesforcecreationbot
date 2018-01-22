@@ -30,6 +30,36 @@ let formatBlocks = blocks => {
     };
 };
 
+let formatSubBlocks = Subblocks => {
+    let elements = [];
+    Subblocks.forEach(Subblock =>
+        elements.push({
+            title: Subblock.get("Name"),
+            subtitle: "Would you like to view this",
+            "image_url": "",
+            "buttons": [{
+                "type":"postback",
+                "title":"Block 1",
+                "payload": "view_contacts," + Subblock.getId() + "," + Subblock.get("Name")
+            },{
+                "type": "web_url",
+                "url": "https://login.salesforce.com/" + Subblock.getId(),
+                "title": "Block 2"
+            },
+            ]
+        });
+    );
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    };
+};
+
 let formatAccounts = accounts => {
     let elements = [];
     accounts.forEach(account =>
@@ -128,6 +158,7 @@ let formatOpportunities = opportunities => {
 };
 
 exports.formatBlocks = formatBlocks;
+exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;
