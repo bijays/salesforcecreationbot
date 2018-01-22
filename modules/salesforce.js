@@ -41,6 +41,7 @@ let findBlock = name => {
 
 };
 
+/*
 let findSubBlock = name => {
     return new Promise((resolve, reject) => {
         let q = "SELECT Id, Name,Block__c,Button_Action__c, Image__c,Title__c, Type__c FROM Sub_Block__c";
@@ -55,7 +56,7 @@ let findSubBlock = name => {
     });
 
 };
-
+*/
 let findAccount = name => {
     return new Promise((resolve, reject) => {
         let q = "SELECT Id, Name, BillingStreet, BillingCity, BillingState, Picture_URL__c, Phone FROM Account WHERE Name LIKE '%" + name + "%' LIMIT 5";

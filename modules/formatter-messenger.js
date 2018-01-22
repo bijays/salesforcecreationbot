@@ -30,6 +30,7 @@ let formatBlocks = blocks => {
     };
 };
 
+/*
 let formatSubBlocks = Subblocks => {
     let elements = [];
     Subblocks.forEach(Subblock =>
@@ -58,7 +59,7 @@ let formatSubBlocks = Subblocks => {
             }
         }
     };
-};
+};*/
 
 let formatAccounts = accounts => {
     let elements = [];
@@ -158,7 +159,7 @@ let formatOpportunities = opportunities => {
 };
 
 exports.formatBlocks = formatBlocks;
-exports.formatSubBlocks = formatSubBlocks;
+//exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;
