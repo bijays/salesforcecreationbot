@@ -1,5 +1,35 @@
 "use strict";
 
+let formatBlocks = blocks => {
+    let elements = [];
+    blocks.forEach(block =>
+        elements.push({
+            title: block.get("Name"),
+            subtitle: "Would you like to view this",
+            "image_url": "",
+            "buttons": [{
+                "type":"postback",
+                "title":"View Exhibitors",
+                "payload": "view_contacts," + block.getId() + "," + block.get("Name")
+            },{
+                "type": "web_url",
+                "url": "https://login.salesforce.com/" + block.getId(),
+                "title": "View Speakers"
+            },
+]
+        })
+    );
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    };
+};
+
 let formatAccounts = accounts => {
     let elements = [];
     accounts.forEach(account =>
@@ -97,6 +127,7 @@ let formatOpportunities = opportunities => {
     };
 };
 
+exports.formatBlocks = formatBlocks;
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;
