@@ -44,7 +44,11 @@ let formatBlocks = blocks => {
           }
     });
     blocks.forEach(block =>
-        elements.push(response)
+        elements.push({
+            title: block.get("Name"),
+            subtitle: "Would you like to view this",
+            "image_url": "",response
+        })
     );
     return {
         "attachment": {
