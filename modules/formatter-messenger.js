@@ -1,23 +1,50 @@
 "use strict";
 
+let nforce = require('nforce'),
+
+SF_CLIENT_ID = process.env.SF_CLIENT_ID,
+SF_CLIENT_SECRET = process.env.SF_CLIENT_SECRET,
+SF_USER_NAME = process.env.SF_USER_NAME,
+SF_PASSWORD = process.env.SF_PASSWORD;
+var response ;
+
+let org = nforce.createConnection({
+    clientId: SF_CLIENT_ID,
+    clientSecret: SF_CLIENT_SECRET,
+    redirectUri: 'http://localhost:3000/oauth/_callback',
+    mode: 'single',
+    autoRefresh: true
+});
+
+let login = () => {
+    org.authenticate({username: SF_USER_NAME, password: SF_PASSWORD}, err => {
+        if (err) {
+            console.error("Authentication error");
+            console.error(err);
+        } else {
+            console.log("Authentication successful");
+        }
+    });
+};
+
 let formatBlocks = blocks => {
     let elements = [];
+
+      org.apexRest({uri:'/BlockList/', method: 'GET', oauth}, function(err, resp) {
+          //console.log(resp);
+          if(!err) {
+            console.log(resp);
+            response = resp;
+            console.log(resp);
+            //res.send(resp);
+          }else{
+            console.log(err);
+            //
+            //res.send(err);
+          }
+    });
     blocks.forEach(block =>
-        elements.push({
-            title: block.get("Name"),
-            subtitle: "Would you like to view this",
-            "image_url": "",
-            "buttons": [{
-                "type":"postback",
-                "title":"View Exhibitors",
-                "payload": "view_contacts," + block.getId() + "," + block.get("Name")
-            },{
-                "type": "web_url",
-                "url": "https://login.salesforce.com/" + block.getId(),
-                "title": "View Speakers"
-            },
-]
-        })
+        elements.push(response)
     );
     return {
         "attachment": {
