@@ -2,6 +2,7 @@
 
 let nforce = require('nforce'),
 
+/*
 SF_CLIENT_ID = process.env.SF_CLIENT_ID,
 SF_CLIENT_SECRET = process.env.SF_CLIENT_SECRET,
 SF_USER_NAME = process.env.SF_USER_NAME,
@@ -26,10 +27,10 @@ let login = () => {
         }
     });
 };
-
+*/
 let formatBlocks = blocks => {
     let elements = [];
-
+        /*
       org.apexRest({uri:'/BlockList/', method: 'GET', oauth}, function(err, resp) {
           //console.log(resp);
           if(!err) {
@@ -42,7 +43,7 @@ let formatBlocks = blocks => {
             //
             //res.send(err);
           }
-    });
+    });*/
     blocks.forEach(block =>
         elements.push({
             title: block.get("Name"),
