@@ -1,6 +1,6 @@
 "use strict";
 
-let nforce = require('nforce'),
+//let nforce = require('nforce'),
 
 /*
 SF_CLIENT_ID = process.env.SF_CLIENT_ID,
