@@ -48,8 +48,8 @@ function sfConnection() {
 
 let formatBlocks = blocks => {
     let elements = [];
-    sfConnection();
-    console.log(response);
+    //sfConnection();
+    //console.log(response);
     blocks.forEach(block =>
         elements.push({
             title: block.get("Name"),
