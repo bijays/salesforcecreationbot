@@ -4,6 +4,50 @@ let request = require('request'),
     salesforce = require('./salesforce'),
     formatter = require('./formatter-messenger');
 
+let nforce = require('nforce'),
+
+SF_CLIENT_ID = process.env.SF_CLIENT_ID,
+SF_CLIENT_SECRET = process.env.SF_CLIENT_SECRET,
+SF_USER_NAME = process.env.SF_USER_NAME,
+SF_PASSWORD = process.env.SF_PASSWORD;
+var responseJSON ;
+
+function sfConnection() {
+
+
+    var org = nforce.createConnection({
+        clientId: SF_CLIENT_ID,
+        clientSecret: SF_CLIENT_SECRET,
+        redirectUri: 'http://localhost:3000/oauth/_callback',
+        mode: 'single',
+        autoRefresh: true
+    });
+
+    org.authenticate({ username: SF_USER_NAME, password: SF_PASSWORD}, function(err, oauth) {
+        if(err) {
+            console.error('unable to authenticate to sfdc');
+        } else {
+            org.apexRest({uri:'/BlockList/', method: 'GET', oauth}, function(err, resp) {
+              //console.log(resp);
+              if(!err) {
+                //console.log(resp);
+                responseJSON = resp;
+                console.log(response);
+                
+                //var obj = JSON.parse(response);
+                //console.log('Tittle'+obj.title);
+                //console.log('buttons'+obj.buttons[0]);
+                //res.send(resp);
+              }else{
+                console.log(err);
+                //
+                //res.send(err);
+              }
+            });
+        }
+    });
+}
+
 let sendMessage = (message, recipient) => {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -28,9 +72,10 @@ let processText = (text, sender)  => {
     if (match) {
         sendMessage({text:
             `Welcome to Creation Technology`}, sender);
+        sfConnection();
         salesforce.findBlock(match[1]).then(blocks => {
             sendMessage({text: `Here are the services available`}, sender);
-            sendMessage(formatter.formatBlocks(blocks), sender)
+            sendMessage(formatter.formatBlocks(blocks,responseJSON), sender)
         });
         return;
     }
@@ -103,5 +148,6 @@ let handlePost = (req, res) => {
     res.sendStatus(200);
 };
 
+exports.org = org;
 exports.handleGet = handleGet;
 exports.handlePost = handlePost;

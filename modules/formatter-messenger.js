@@ -54,17 +54,8 @@ let formatBlocks = blocks => {
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
-            "image_url": "","buttons": [{
-                "type":"postback",
-                "title":"View Exhibitors",
-                "payload": "view_contacts," + block.getId() + "," + block.get("Name")
-            },{
-                "type": "web_url",
-                "url": "https://login.salesforce.com/" + block.getId(),
-                "title": "View Speakers"
-            },
-]
-            
+            "image_url": "",
+            responseJSON
         })
     );
     return {
