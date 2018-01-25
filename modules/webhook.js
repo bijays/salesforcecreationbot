@@ -4,6 +4,7 @@ let request = require('request'),
     salesforce = require('./salesforce'),
     formatter = require('./formatter-messenger');
 
+/*
 let nforce = require('nforce'),
 
 SF_CLIENT_ID = process.env.SF_CLIENT_ID,
@@ -47,7 +48,7 @@ function sfConnection() {
         }
     });
 }
-
+*/
 let sendMessage = (message, recipient) => {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -148,6 +149,6 @@ let handlePost = (req, res) => {
     res.sendStatus(200);
 };
 
-exports.org = org;
+//exports.org = org;
 exports.handleGet = handleGet;
 exports.handlePost = handlePost;
