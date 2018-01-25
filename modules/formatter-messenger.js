@@ -49,16 +49,12 @@ function sfConnection() {
 let formatBlocks = blocks => {
     let elements = [];
     sfConnection();
+    console.log(response);
     blocks.forEach(block =>
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
-            "image_url": "",
-            "buttons" : [ {
-                "type" : "postback",
-                "title" : "View Speakers",
-                "payload" : "view_contacts"
-              } ]
+            "image_url": "",response
             
         })
     );
@@ -201,6 +197,7 @@ let formatOpportunities = opportunities => {
     };
 };
 
+exports.org = org;
 exports.formatBlocks = formatBlocks;
 //exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
