@@ -53,7 +53,12 @@ let formatBlocks = blocks => {
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
-            "image_url": "",response
+            "image_url": "",
+            "buttons" : [ {
+                "type" : "postback",
+                "title" : "View Speakers",
+                "payload" : "view_contacts"
+              } ]
             
         })
     );
