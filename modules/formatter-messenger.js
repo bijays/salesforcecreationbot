@@ -48,7 +48,7 @@ function sfConnection() {
 
 let formatBlocks = blocks => {
     let elements = [];
-    sfConnection();
+    //sfConnection();
     //console.log(response);
     blocks.forEach(block =>
         elements.push({
