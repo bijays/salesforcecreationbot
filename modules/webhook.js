@@ -4,27 +4,28 @@ let request = require('request'),
     salesforce = require('./salesforce'),
     formatter = require('./formatter-messenger');
 
-/*
-let nforce = require('nforce'),
 
+let nforce = require('nforce'),
+/*
 SF_CLIENT_ID = process.env.SF_CLIENT_ID,
 SF_CLIENT_SECRET = process.env.SF_CLIENT_SECRET,
 SF_USER_NAME = process.env.SF_USER_NAME,
 SF_PASSWORD = process.env.SF_PASSWORD;
+*/
 var responseJSON ;
 
 function sfConnection() {
 
 
     var org = nforce.createConnection({
-        clientId: SF_CLIENT_ID,
-        clientSecret: SF_CLIENT_SECRET,
+        clientId: '3MVG9TSaZ8P6zP1pjFiXR8g.2XjQ89MlDtOeYXx3SGF0VlfkRqjnYWRJUzj3rE54VhYWlfreMFlRODJIMlcWQ',
+        clientSecret: '627198209513811766',
         redirectUri: 'http://localhost:3000/oauth/_callback',
         mode: 'single',
         autoRefresh: true
     });
 
-    org.authenticate({ username: SF_USER_NAME, password: SF_PASSWORD}, function(err, oauth) {
+    org.authenticate({ username: 'bijays@creation.technology', password: 'BM@1227174'}, function(err, oauth) {
         if(err) {
             console.error('unable to authenticate to sfdc');
         } else {
@@ -33,7 +34,7 @@ function sfConnection() {
               if(!err) {
                 //console.log(resp);
                 responseJSON = resp;
-                console.log(response);
+                console.log(responseJSON);
                 
                 //var obj = JSON.parse(response);
                 //console.log('Tittle'+obj.title);
@@ -48,7 +49,6 @@ function sfConnection() {
         }
     });
 }
-*/
 let sendMessage = (message, recipient) => {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -73,10 +73,11 @@ let processText = (text, sender)  => {
     if (match) {
         sendMessage({text:
             `Welcome to Creation Technology`}, sender);
-        //sfConnection();
+        
         salesforce.findBlock(match[1]).then(blocks => {
+            sfConnection();
             sendMessage({text: `Here are the services available`}, sender);
-            sendMessage(formatter.formatBlocks(blocks), sender)
+            sendMessage(formatter.formatBlocks(blocks,responseJSON), sender)
         });
         return;
     }

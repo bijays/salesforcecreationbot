@@ -46,7 +46,7 @@ function sfConnection() {
     });
 }
 
-let formatBlocks = blocks => {
+let formatBlocks = (blocks, responseJSON) => {
     let elements = [];
     //sfConnection();
     //console.log(response);
@@ -54,7 +54,8 @@ let formatBlocks = blocks => {
         elements.push({
             title: block.get("Name"),
             subtitle: "Would you like to view this",
-            "image_url": "",
+            "image_url": "",responseJSON
+            /*
             "buttons": [{
                 "type":"postback",
                 "title":"View Exhibitors",
@@ -64,7 +65,7 @@ let formatBlocks = blocks => {
                 "url": "https://login.salesforce.com/" + block.getId(),
                 "title": "View Speakers"
             },
-]
+]*/
             
         })
     );
