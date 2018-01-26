@@ -48,7 +48,7 @@ function sfConnection() {
 
 let formatBlocks = blocks => {
     let elements = [];
-    //sfConnection();
+    sfConnection();
     //console.log(response);
     blocks.forEach(block =>
         elements.push({
@@ -207,7 +207,7 @@ let formatOpportunities = opportunities => {
     };
 };
 
-//exports.org = org;
+exports.org = org;
 exports.formatBlocks = formatBlocks;
 //exports.formatSubBlocks = formatSubBlocks;
 exports.formatAccounts = formatAccounts;
